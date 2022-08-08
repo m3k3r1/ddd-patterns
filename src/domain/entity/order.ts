@@ -26,6 +26,10 @@ export default class Order {
         return this._items;
     }
 
+    updateItems(items: OrderItem[]) {
+        this._items = items;
+        this._total = this.total();
+    }
 
     validate(): boolean {
         if (this._id.length === 0) {
@@ -45,6 +49,6 @@ export default class Order {
     }
 
     total(): number {
-        return this._items.reduce((acc, item) => acc + item.price , 0);
+        return this._items.reduce((acc, item) => acc + item.price * item.quantity, 0);
     }
 }
